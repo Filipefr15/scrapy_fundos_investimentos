@@ -63,7 +63,7 @@ class CvmSpider(scrapy.Spider):
         linhas = response.xpath("//table[@id='dgDocDiario']//tr[position()>1]") #ignora a primeira linha, >1 (pula o primeiro tr)
 
         #se não tiver valor na quota (coluna 2), já filtra e retira a linha
-        linhas_validas = [linha for linha in linhas if linha.xpath("td[2]/text()").get()] 
+        linhas_validas = [linha for linha in linhas if len(linha.xpath("td[2]/text()").get())!=1]
 
         if linhas_validas:
             ultima_linha = linhas_validas[-1]
