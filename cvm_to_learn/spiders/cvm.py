@@ -91,9 +91,7 @@ class CvmSpider(scrapy.Spider):
                                                                                                "dados_diarios": response.meta['dados_diarios']})
     
     def parse_lamina_fundos(self, response):
-        print(response.url)
-        mes_competencia = response.xpath("//table[@id='Table1']/tbody/tr/td/div/p[4]/b/span").get()
-        print("COMPETENCIA??",mes_competencia)
+        mes_competencia = response.xpath("//select[@id='ddlData']/option/text()").get()
         yield {
             "cnpj": response.meta["cnpj"],
             "nome_fundo": response.meta["nome_fundo"],
